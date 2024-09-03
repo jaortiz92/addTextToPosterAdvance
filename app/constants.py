@@ -5,16 +5,19 @@ class Constants:
     # PATH
     IN: str = './in/'
     BASE: str = 'base/'
+    IN_FONTS: str = IN + BASE + 'fonts/'
+    IN_IMAGES: str = IN + BASE + 'images/'
     OUT: str = './out/'
 
         # In
-    IMAGE_PATH: str = IN + BASE + 'ARTE-SIN-TITULOS.png'
-    FONT_HI_PATH: str = IN + BASE + 'Raleway-Regular.ttf'
-    FONT_NAME_PATH: str = IN + BASE + 'Raleway-SemiBoldItalic.ttf'
-    FONT_TITLE_PATH: str = IN + BASE + 'Raleway-Regular.ttf'
-    FONT_UNIT_PATH: str = IN + BASE + 'Century-Gothic-Bold.ttf'
-    FONT_ORDER_VALUE_PATH: str = IN + BASE + 'Century-Gothic-Bold.ttf'
-    FONT_ADVANCE_PATH: str = IN + BASE + 'Century-Gothic-Bold.ttf'
+    IMAGE_PATH: str = IN_IMAGES + 'ARTE-SIN-TITULOS.png'
+
+    FONT_HI_PATH: str = IN_FONTS + 'Raleway-Regular.ttf'
+    FONT_NAME_PATH: str = IN_FONTS + 'Raleway-SemiBoldItalic.ttf'
+    FONT_TITLE_PATH: str = IN_FONTS + 'Raleway-Regular.ttf'
+    FONT_UNIT_PATH: str = IN_FONTS + 'Century-Gothic-Bold.ttf'
+    FONT_ORDER_VALUE_PATH: str = IN_FONTS + 'Century-Gothic-Bold.ttf'
+    FONT_ADVANCE_PATH: str = IN_FONTS + 'Century-Gothic-Bold.ttf'
     FILE_TO_WORK: str = IN + 'Anticipos.xlsx'
         # Out
         
