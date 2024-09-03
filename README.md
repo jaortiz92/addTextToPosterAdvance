@@ -1,6 +1,6 @@
 # AddTextToPosterAdvance
 ```sh
-git clone git@github.com:jaortiz92/addTextToPosterAdvance.git
+git clone https://github.com/jaortiz92/addTextToPosterAdvance.git
 cd ./addTextToPosterAdvance
 ```
 - You have to add ttf and photos tu use in addTextToPosterAdvance/in/base.

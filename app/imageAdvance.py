@@ -63,7 +63,7 @@ class ImageAdvance:
             Constants.FONT_UNIT_PATH,
             Constants.SIZE_UNIT,
             Constants.TITLE_UNIT,
-            self.total,
+            self.units,
             Constants.Y_UNIT,
             Constants.COLOR_UNIT
         )
@@ -74,7 +74,7 @@ class ImageAdvance:
             Constants.FONT_ORDER_VALUE_PATH,
             Constants.SIZE_ORDER_VALUE,
             Constants.TITLE_ORDER_VALUE,
-            self.units,
+            self.total,
             Constants.Y_ORDER_VALUE,
             Constants.COLOR_ORDER_VALUE
         )
