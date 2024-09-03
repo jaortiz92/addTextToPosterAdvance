@@ -11,6 +11,15 @@ class Constants:
 
         # In
     IMAGE_PATH: str = IN_IMAGES + 'ARTE-SIN-TITULOS.png'
+    IMAGE_MILON: str = IN_IMAGES + 'plantilla-milon.png'
+    IMAGE_KYLY: str = IN_IMAGES + 'plantilla-kyly.png'
+    IMAGE_NANAI: str = IN_IMAGES + 'plantilla-nanai.png'
+    IMAGES: dict[str, str] = {
+        'DEFAULT': IMAGE_PATH,
+        'MILON': IMAGE_MILON,
+        'KYLY': IMAGE_KYLY,
+        'NANAI': IMAGE_NANAI
+    }
 
     FONT_HI_PATH: str = IN_FONTS + 'Raleway-Regular.ttf'
     FONT_NAME_PATH: str = IN_FONTS + 'Raleway-SemiBoldItalic.ttf'

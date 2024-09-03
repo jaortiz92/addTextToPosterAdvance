@@ -8,13 +8,16 @@ from .utils import Utils
 class ImageAdvance:
     def __init__(
             self, name: str, total: str, units: str, 
-            advance_value: str, add_advance: bool = True
+            advance_value: str, add_advance: bool = True,
+            step: int = 1, brand: str = ''
         ) -> None:
         self.name: str = name
         self.total: str = total
         self.units: str = units
         self.advance_value: str = advance_value
         self.add_advance: bool = add_advance
+        self.step: int = step
+        self.brand: str = brand
         self.open_image()
         self.add_texts()
         Utils.save_image(self.name, self.image)
@@ -31,7 +34,18 @@ class ImageAdvance:
             -------
             None
         '''
-        self.image: PngImageFile = Image.open(Constants.IMAGE_PATH)
+        if self.step == 2:
+            self.image: PngImageFile = Image.open(
+                Constants.IMAGES.get(
+                    self.brand,
+                    Constants.IMAGES['KYLY']
+                )
+            )
+        else:
+            self.image: PngImageFile = Image.open(
+                Constants.IMAGES['DEFAULT']
+            )
+
         self.draw: ImageDraw.ImageDraw = ImageDraw.Draw(self.image)
 
     def add_texts(self) -> None:
@@ -47,7 +61,8 @@ class ImageAdvance:
             None
         '''
         #NAME
-        self.add_one_text(
+        Utils.add_one_text(
+            self.draw,
             Constants.FONT_HI_PATH,
             Constants.FONT_NAME_PATH ,
             Constants.SIZE_NAME,
@@ -58,7 +73,8 @@ class ImageAdvance:
         )
 
         #UNIT
-        self.add_one_text(
+        Utils.add_one_text(
+            self.draw,
             Constants.FONT_TITLE_PATH,
             Constants.FONT_UNIT_PATH,
             Constants.SIZE_UNIT,
@@ -69,7 +85,8 @@ class ImageAdvance:
         )
 
         #ORDER_VALUE
-        self.add_one_text(
+        Utils.add_one_text(
+            self.draw,
             Constants.FONT_TITLE_PATH,
             Constants.FONT_ORDER_VALUE_PATH,
             Constants.SIZE_ORDER_VALUE,
@@ -80,8 +97,9 @@ class ImageAdvance:
         )
 
         #ADVANCE
-        if self.add_advance:
-            self.add_one_text(
+        if self.add_advance and self.step == 1:
+            Utils.add_one_text(
+                self.draw,
                 Constants.FONT_TITLE_PATH,
                 Constants.FONT_ADVANCE_PATH,
                 Constants.SIZE_ADVANCE,
@@ -91,57 +109,4 @@ class ImageAdvance:
                 Constants.COLOR_ADVANCE
             )
 
-    def add_one_text(
-            self, font_path_one: str, font_path_two: str,
-            size: int, text_one: str, text_two: str,
-            y_value: int, color: Tuple[int]
-        ) -> None:
-        '''
-            font_path_one: str
-                Path to text one's font
-            font_path_two: str
-                Path to text two's font
-            size: int
-                Size to text's font
-            text_one: str
-                Text one
-            text_two: str
-                Text two
-            y_value: int
-                Position to y in the image
-            color: Tuple[int]
-                Color to use in the text
-
-            Parameters
-            ----------
-            None
-
-            Returns
-            -------
-            None
-        '''
-
-        font_one: FreeTypeFont = ImageFont.truetype(font_path_one, size)
-        
-        font_two: FreeTypeFont = ImageFont.truetype(font_path_two, size)
-        
-        sizes: Tuple[int] = Utils.generate_size(
-            text_one, text_two,
-            font_one, font_two,
-        )
-
-        x_name: int = Utils.generate_center_value(sizes[0])
-
-        self.draw.text(
-            (x_name, y_value),
-            text_one,
-            font=font_one,
-            fill=color
-        )
-
-        self.draw.text(
-            (x_name + sizes[2], y_value),
-            text_two,
-            font=font_two,
-            fill=color
-        )
+    

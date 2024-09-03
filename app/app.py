@@ -10,7 +10,6 @@ class App:
     def __init__(self) -> None:
         self.open_files()
         self.fit()
-        
 
 
     def open_files(self) -> None:
@@ -25,7 +24,8 @@ class App:
             -------
             None
         '''
-        self.advances: DataFrame = Advance().advance
+        self.df: DataFrame = Advance().advance
+
 
     def fit(self) -> None:
         '''
@@ -39,17 +39,16 @@ class App:
             -------
             None
         '''
-        imagens: int = len(self.advances)
+        imagens: int = len(self.df)
         print('Se crearan {} imagenes'.format(imagens))
-        for i in self.advances.index:
+        for i in self.df.index:
             print('Generando imagen {} de {}'.format(i + 1, imagens))
             ImageAdvance(
-                self.advances.loc[i, 'NOMBRE'],
-                self.advances.loc[i, 'TOTAL_CON_IVA'],
-                self.advances.loc[i, 'UNIDADES'],
-                self.advances.loc[i, 'VALOR_ANTICIPO'],
-                self.advances.loc[i, 'AGREGAR_ANTICIPO'],
+                self.df.loc[i, 'NOMBRE'],
+                self.df.loc[i, 'TOTAL_CON_IVA'],
+                self.df.loc[i, 'UNIDADES'],
+                self.df.loc[i, 'VALOR_ANTICIPO'],
+                self.df.loc[i, 'AGREGAR_ANTICIPO'],
+                self.df.loc[i, 'PASO'],
+                self.df.loc[i, 'MARCA']
             )
-        print('Proceso Completado')
-
-

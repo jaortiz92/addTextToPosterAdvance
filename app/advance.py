@@ -41,7 +41,9 @@ class Advance:
         None
         '''
         self.advance = self.advance.assign(
-            NOMBRE = lambda df: df['CLIENTE'].str.title() + '!',
+            NOMBRE = lambda df: df['CLIENTE'].apply(
+                lambda x: ' '.join(x.split()).title() + '!'
+            ),
             AGREGAR_ANTICIPO = lambda df: df['ANTICIPO'] != 0,
             ANTICIPO = lambda df: df['ANTICIPO'].apply(
                 lambda x:'{:.0f}% '.format(x * 100)
@@ -54,5 +56,7 @@ class Advance:
             ).str.replace(',', '.'),
             VALOR_ANTICIPO = lambda df: df['ANTICIPO'] + df['VALOR ANTICIPO'].apply(
                 lambda x:'${:,.0f}'.format(x)
-            ).str.replace(',', '.')
+            ).str.replace(',', '.'),
+            MARCA = lambda df: df['MARCA'].fillna(''),
+            PASO = lambda df: df['PASO'].fillna(1),
         )

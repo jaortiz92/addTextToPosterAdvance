@@ -85,3 +85,62 @@ class Utils():
             None
         '''
         image.save(Constants.OUT + name + '.png')
+
+    @classmethod
+    def add_one_text(
+            cls, draw: ImageDraw.ImageDraw, font_path_one: str, 
+            font_path_two: str, size: int, text_one: str, 
+            text_two: str, y_value: int, color: Tuple[int]
+        ) -> ImageDraw.ImageDraw:
+        '''
+            font_path_one: str
+                Path to text one's font
+            font_path_two: str
+                Path to text two's font
+            size: int
+                Size to text's font
+            text_one: str
+                Text one
+            text_two: str
+                Text two
+            y_value: int
+                Position to y in the image
+            color: Tuple[int]
+                Color to use in the text
+
+            Parameters
+            ----------
+            None
+
+            Returns
+            -------
+            ImageDraw
+                Image with new text
+        '''
+
+        font_one: FreeTypeFont = ImageFont.truetype(font_path_one, size)
+        
+        font_two: FreeTypeFont = ImageFont.truetype(font_path_two, size)
+        
+        sizes: Tuple[int] = Utils.generate_size(
+            text_one, text_two,
+            font_one, font_two,
+        )
+
+        x_name: int = Utils.generate_center_value(sizes[0])
+
+        draw.text(
+            (x_name, y_value),
+            text_one,
+            font=font_one,
+            fill=color
+        )
+
+        draw.text(
+            (x_name + sizes[2], y_value),
+            text_two,
+            font=font_two,
+            fill=color
+        )
+
+        return draw
