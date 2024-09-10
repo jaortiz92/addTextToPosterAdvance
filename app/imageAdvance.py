@@ -102,7 +102,7 @@ class ImageAdvance:
         )
 
         #ADVANCE
-        if self.add_advance and self.step == 1:
+        if self.add_advance:
             Utils.add_one_text(
                 self.draw,
                 Constants.FONT_TITLE_PATH,
