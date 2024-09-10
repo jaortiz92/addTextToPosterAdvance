@@ -50,5 +50,6 @@ class App:
                 self.df.loc[i, 'VALOR_ANTICIPO'],
                 self.df.loc[i, 'AGREGAR_ANTICIPO'],
                 self.df.loc[i, 'PASO'],
-                self.df.loc[i, 'MARCA']
+                self.df.loc[i, 'MARCA'],
+                self.df.loc[i, 'TEMPORADA'],
             )

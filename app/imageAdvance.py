@@ -9,7 +9,7 @@ class ImageAdvance:
     def __init__(
             self, name: str, total: str, units: str, 
             advance_value: str, add_advance: bool = True,
-            step: int = 1, brand: str = ''
+            step: int = 1, brand: str = '', season: str = ''
         ) -> None:
         self.name: str = name
         self.total: str = total
@@ -18,6 +18,7 @@ class ImageAdvance:
         self.add_advance: bool = add_advance
         self.step: int = step
         self.brand: str = brand
+        self.season: str = season
         self.open_image()
         self.add_texts()
         Utils.save_image(self.name, self.image)
@@ -35,10 +36,14 @@ class ImageAdvance:
             None
         '''
         if self.step == 2:
+            dict_images: dict = Constants.IMAGES.get(
+                    self.season,
+                    Constants.IMAGES['I24']
+            )
             self.image: PngImageFile = Image.open(
-                Constants.IMAGES.get(
+                dict_images.get(
                     self.brand,
-                    Constants.IMAGES['KYLY']
+                    dict_images['DEFAULT']
                 )
             )
         else:

@@ -24,7 +24,8 @@ class Advance:
         self.advance: DataFrame = pd.read_excel(
             Constants.FILE_TO_WORK,
             dtype={
-                'CLIENTE': str
+                'CLIENTE': str,
+                'PASO': int   
             }
         )
 
@@ -59,4 +60,5 @@ class Advance:
             ).str.replace(',', '.'),
             MARCA = lambda df: df['MARCA'].fillna(''),
             PASO = lambda df: df['PASO'].fillna(1),
+            TEMPORADA = lambda df: df['TEMPORADA'].fillna('').str.upper(),
         )
